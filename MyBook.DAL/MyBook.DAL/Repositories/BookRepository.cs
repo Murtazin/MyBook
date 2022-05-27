@@ -55,6 +55,5 @@ public class BookRepository : IRepository<Book>
             if (book != null)
                 _db.Books.Remove(book);
         });
-            
     }
 }

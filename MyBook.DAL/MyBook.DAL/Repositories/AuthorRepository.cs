@@ -55,6 +55,5 @@ public class AuthorRepository : IRepository<Author>
             if (author != null)
                 _db.Authors.Remove(author);
         });
-            
     }
 }
