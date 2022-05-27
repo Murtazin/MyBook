@@ -5,7 +5,7 @@ using MyBook.DAL.Entities;
 
 namespace MyBook.DAL.EF;
 
-public class DatabaseContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
+public class DatabaseContext : IdentityDbContext<IdentityUser, IdentityRole, string>
 {
     public DbSet<Author> Authors { get; set; }
     public DbSet<Book> Books { get; set; }
@@ -38,7 +38,7 @@ public class DatabaseContext : IdentityDbContext<ApplicationUser, IdentityRole, 
             {
                 new Book
                 {
-                    Author = new Author{Age = 28, FirstName = "Марк", SecondName = "Мэнсон", Id = Guid.NewGuid()},
+                    // Author = new Author{Age = 28, FirstName = "Марк", SecondName = "Мэнсон", Id = Guid.NewGuid()},
                     CountOfPages = 200,
                     Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut volutpat nisl non neque pellentesque convallis. Maecenas tincidunt lacus id finibus rhoncus. Donec molestie, leo quis rutrum tristique, lacus ex mollis neque, eu pharetra metus lacus sed turpis. Nulla dictum eu sem id rutrum. Maecenas bibendum fermentum est, et vulputate nulla viverra et. Sed quis ligula vitae urna egestas condimentum. Morbi pellentesque molestie magna, et sollicitudin quam porta non. Vivamus quis elementum justo. Aliquam at ipsum pharetra, suscipit quam sit amet, feugiat neque.",
                     Id = Guid.NewGuid(),
@@ -47,7 +47,7 @@ public class DatabaseContext : IdentityDbContext<ApplicationUser, IdentityRole, 
                 },
                 new Book
                 {
-                    Author = new Author{Age = 56, FirstName = "Борис", SecondName = "Акунин", Id = Guid.NewGuid()},
+                    // Author = new Author{Age = 56, FirstName = "Борис", SecondName = "Акунин", Id = Guid.NewGuid()},
                     CountOfPages = 300,
                     Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut volutpat nisl non neque pellentesque convallis. Maecenas tincidunt lacus id finibus rhoncus. Donec molestie, leo quis rutrum tristique, lacus ex mollis neque, eu pharetra metus lacus sed turpis. Nulla dictum eu sem id rutrum. Maecenas bibendum fermentum est, et vulputate nulla viverra et. Sed quis ligula vitae urna egestas condimentum. Morbi pellentesque molestie magna, et sollicitudin quam porta non. Vivamus quis elementum justo. Aliquam at ipsum pharetra, suscipit quam sit amet, feugiat neque.",
                     Id = Guid.NewGuid(),
@@ -56,13 +56,31 @@ public class DatabaseContext : IdentityDbContext<ApplicationUser, IdentityRole, 
                 },
                 new Book
                 {
-                    Author = new Author{Age = 48, FirstName = "Дэн", SecondName = "Браун", Id = Guid.NewGuid()},
+                    // Author = new Author{Age = 48, FirstName = "Дэн", SecondName = "Браун", Id = Guid.NewGuid()},
                     CountOfPages = 400,
                     Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut volutpat nisl non neque pellentesque convallis. Maecenas tincidunt lacus id finibus rhoncus. Donec molestie, leo quis rutrum tristique, lacus ex mollis neque, eu pharetra metus lacus sed turpis. Nulla dictum eu sem id rutrum. Maecenas bibendum fermentum est, et vulputate nulla viverra et. Sed quis ligula vitae urna egestas condimentum. Morbi pellentesque molestie magna, et sollicitudin quam porta non. Vivamus quis elementum justo. Aliquam at ipsum pharetra, suscipit quam sit amet, feugiat neque.",
                     Id = Guid.NewGuid(),
                     Title = "Book #3",
                     YearOfIssue = new DateTime(2022, 02, 05)
-                }
+                },
+                new Book
+                {
+                    // Author = new Author{Age = 48, FirstName = "Дэн", SecondName = "Браун", Id = Guid.NewGuid()},
+                    CountOfPages = 400,
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut volutpat nisl non neque pellentesque convallis. Maecenas tincidunt lacus id finibus rhoncus. Donec molestie, leo quis rutrum tristique, lacus ex mollis neque, eu pharetra metus lacus sed turpis. Nulla dictum eu sem id rutrum. Maecenas bibendum fermentum est, et vulputate nulla viverra et. Sed quis ligula vitae urna egestas condimentum. Morbi pellentesque molestie magna, et sollicitudin quam porta non. Vivamus quis elementum justo. Aliquam at ipsum pharetra, suscipit quam sit amet, feugiat neque.",
+                    Id = Guid.NewGuid(),
+                    Title = "Book #3",
+                    YearOfIssue = new DateTime(2022, 02, 05)
+                },
+                new Book
+                {
+                    // Author = new Author{Age = 48, FirstName = "Дэн", SecondName = "Браун", Id = Guid.NewGuid()},
+                    CountOfPages = 400,
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut volutpat nisl non neque pellentesque convallis. Maecenas tincidunt lacus id finibus rhoncus. Donec molestie, leo quis rutrum tristique, lacus ex mollis neque, eu pharetra metus lacus sed turpis. Nulla dictum eu sem id rutrum. Maecenas bibendum fermentum est, et vulputate nulla viverra et. Sed quis ligula vitae urna egestas condimentum. Morbi pellentesque molestie magna, et sollicitudin quam porta non. Vivamus quis elementum justo. Aliquam at ipsum pharetra, suscipit quam sit amet, feugiat neque.",
+                    Id = Guid.NewGuid(),
+                    Title = "Book #3",
+                    YearOfIssue = new DateTime(2022, 02, 05)
+                },
             }
         );
     }

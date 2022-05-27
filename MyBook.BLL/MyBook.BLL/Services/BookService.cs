@@ -31,7 +31,7 @@ public class BookService : IBookService
         { 
             Id = book.Id,
             Title = book.Title,
-            Author = book.Author,
+            // Author = book.Author,
             Description = book.Description,
             CountOfPages = book.CountOfPages,
             YearOfIssue = book.YearOfIssue

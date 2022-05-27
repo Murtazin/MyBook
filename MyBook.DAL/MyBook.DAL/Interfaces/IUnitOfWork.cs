@@ -8,8 +8,10 @@ public interface IUnitOfWork : IDisposable
     IRepository<Subscription> Subscriptions { get; }
     IRepository<Book> Books { get; }
     IRepository<Rating> Ratings { get; }
-    IUserRepository Users { get; }
+    // IUserRepository Users { get; }
     IRoleRepository Roles { get; }
-    
+
+    IUserRepository Users { get; }
+
     void Save();
 }

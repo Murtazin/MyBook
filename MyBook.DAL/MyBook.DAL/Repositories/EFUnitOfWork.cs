@@ -10,7 +10,7 @@ public class EFUnitOfWork : IUnitOfWork
 {
     private DatabaseContext _db;
     private RoleManager<IdentityRole> _roleManager;
-    private UserManager<ApplicationUser> _userManager;
+    private UserManager<IdentityUser> _userManager;
     
     private AuthorRepository _authorRepository;
     private BookRepository _bookRepository;
