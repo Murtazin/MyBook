@@ -2,7 +2,7 @@ using MyBook.DAL.Entities;
 
 namespace MyBook.DAL.Interfaces;
 
-public interface IUnitOfWork
+public interface IUnitOfWork : IDisposable
 {
     IRepository<Author> Authors { get; }
     IRepository<Subscription> Subscriptions { get; }
