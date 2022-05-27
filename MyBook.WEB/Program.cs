@@ -1,23 +1,39 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MyBook.BLL.Interfaces;
+using MyBook.BLL.Services;
+using MyBook.DAL.EF;
+using MyBook.DAL.Entities;
+using MyBook.DAL.Interfaces;
+using MyBook.DAL.Repositories;
 using MyBook.WEB.Data;
 using MyBook.WEB.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();;
-
-// Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<DatabaseContext>(options => options.UseNpgsql(connectionString)
+);
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+    {
+        options.User.RequireUniqueEmail = true;    // ���������� email
+        options.SignIn.RequireConfirmedAccount = true;
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    })
+    .AddEntityFrameworkStores<DatabaseContext>()
+    .AddDefaultUI()
+    .AddDefaultTokenProviders();
 // builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IUnitOfWork, EFUnitOfWork>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IRatingService, RatingService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
+
 
 var app = builder.Build();
 

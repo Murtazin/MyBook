@@ -9,9 +9,9 @@ public class RoleRepository : IRoleRepository
 {
     private readonly DatabaseContext _db;
     private readonly RoleManager<IdentityRole> _roleManager;
-    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public RoleRepository(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, DatabaseContext db)
+    public RoleRepository(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager, DatabaseContext db)
     {
         _roleManager = roleManager;
         _userManager = userManager;

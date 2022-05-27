@@ -8,29 +8,29 @@ namespace MyBook.DAL.Repositories;
 public class UserRepository : IUserRepository
 {
     private readonly DatabaseContext _db;
-    private readonly UserManager<ApplicationUser> _userManager;
-    public UserRepository(UserManager<ApplicationUser> userManager, DatabaseContext context)
+    private readonly UserManager<IdentityUser> _userManager;
+    public UserRepository(UserManager<IdentityUser> userManager, DatabaseContext context)
     {
         _db = context;
         _userManager = userManager;
     }
 
-    public async Task<IEnumerable<ApplicationUser>> GetAll()
+    public async Task<IEnumerable<IdentityUser>> GetAll()
     {
         return await _db.Users.ToListAsync();
     }
 
-    public async Task<ApplicationUser> Get(string id)
+    public async Task<IdentityUser> Get(string id)
     {
         return await _userManager.FindByIdAsync(id); ;
     }
 
-    public async Task Create(ApplicationUser userSubscription)
+    public async Task Create(IdentityUser userSubscription)
     {
         await _db.Users.AddAsync(userSubscription);
     }
 
-    public async Task Update(ApplicationUser userSubscription)
+    public async Task Update(IdentityUser userSubscription)
     {
         await Task.Run(() =>
         {
@@ -38,7 +38,7 @@ public class UserRepository : IUserRepository
 
         });
     }
-    public async Task<IEnumerable<ApplicationUser>> Find(Func<ApplicationUser, Boolean> predicate)
+    public async Task<IEnumerable<IdentityUser>> Find(Func<IdentityUser, Boolean> predicate)
     {
         await Task.Run(() =>
         {
@@ -61,7 +61,7 @@ public class UserRepository : IUserRepository
     {
         await Task.Run(() =>
         {
-            ApplicationUser users = _db.Users.Find(id);
+            IdentityUser users = _db.Users.Find(id);
             if (users != null)
                 _db.Users.Remove(users);
 

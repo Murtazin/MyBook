@@ -1,5 +1,6 @@
 using AutoMapper;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 using MyBook.BLL.DTOModels;
 using MyBook.BLL.Interfaces;
 using MyBook.DAL.EF;
@@ -43,7 +44,7 @@ public class UserService : IUserService
     {
         var users = await Database.Users.GetAll();
         var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ApplicationUser, UserDTO>()).CreateMapper();
-        return mapper.Map<IEnumerable<ApplicationUser>, List<UserDTO>>(users);
+        return mapper.Map<IEnumerable<IdentityUser>, List<UserDTO>>(users);
     }
 
     public async Task<IEnumerable<string>> GetRoles(string userName)
