@@ -1,50 +1,107 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - MyBook.WEB</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/MyBook.WEB.styles.css" asp-append-version="true"/>
-</head>
-<body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyBook.WEB</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
-                <partial name="_LoginPartial"/>
-            </div>
-        </div>
-    </nav>
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
+    @await Html.PartialAsync("_MetatagsPartial")
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2022 - MyBook.WEB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </div>
-</footer>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
+    <title>@ViewBag.Title | MyBook — электронная библиотека</title>
+
+    @await Html.PartialAsync("_StylesheetsPartial")
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-migrate/dist/jquery-migrate.min.js"></script>
+</head>
+
+<body>
+@await Html.PartialAsync("_HeaderPartial")
+@* @await Html.PartialAsync("_SidebarPartial") *@
+@await Html.PartialAsync("_ModalPartial")
+
+@RenderBody()
+
+@* @await Html.PartialAsync("_ChatPartial") *@
+@await Html.PartialAsync("_FooterPartial")
+@await Html.PartialAsync("_ScriptsPartial")
+
+<script>
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/chat")
+            .build();
+        
+        document.getElementById("sendButton").disabled = true;
+        let template = document.getElementById('chatbox-template');       
+        
+         hubConnection.on("ReceiveMessage", function (user, image, to, message) {                      
+                    let elem = document.createElement('div');
+                    
+                    if ("@User.Identity!.Name" === user)    
+                        elem.classList.add('chatbox__body__message', 'chatbox__body__message--right');
+                    else
+                        elem.classList.add('chatbox__body__message', 'chatbox__body__message--left');
+                   
+                    elem.innerHTML = template.innerHTML;
+                    let messageTemplate = elem.querySelector('#messageTemplate');
+                    let senderTemplate = elem.querySelector('#senderTemplate');
+                    let dateTemplate = elem.querySelector('#dateTemplate');
+                    let imageTemplate = elem.querySelector('#imageTemplate');
+                    
+                    if (to !== null)
+                        messageTemplate.innerHTML = `<strong>${to},</strong> ${message.toString()}`;
+                    else
+                         messageTemplate.innerHTML = message.toString();
+                    
+                    senderTemplate.innerHTML = user;
+                    imageTemplate.src = `data:image/png;base64,${image}`
+ 
+                    dateTemplate.innerHTML = new Date().toLocaleString();
+                    document.getElementById('chatroom').appendChild(elem);
+         });
+
+         hubConnection.on("Notify", function (message) {                      
+                             let elem = document.createElement('h6');
+                             elem.classList.add('font-size-2', 'font-weight-medium', 'mb-2');                        
+                             elem.innerHTML = message.toString(); 
+                             document.getElementById('chatroom').appendChild(elem);
+                  });
+         
+         hubConnection.start().then(function () {
+             document.getElementById("sendButton").disabled = false;
+         }).catch(function (err) {
+             return console.error(err.toString());
+         });
+        
+         document.getElementById("sendButton").addEventListener("click", function (event) {
+             let message = document.getElementById("messageInput").value;      
+             
+             @if (User.IsInRole("Admin"))
+             {
+                 <text>
+                 let receiver = document.getElementById("receiverInput").value;
+                 if (receiver !== "") {       
+                     hubConnection.invoke("SendMessageToGroup", receiver, message).catch(function (err) {
+                         return console.error(err.toString());
+                     });
+                 }
+                 else {
+                     hubConnection.invoke("SendMessage", message).catch(function (err) {
+                         return console.error(err.toString());
+                     });
+                 }
+                 </text>
+             }
+             else
+             {
+                 <text>
+                 hubConnection.invoke("SendMessage", message).catch(function (err) {
+                     return console.error(err.toString());
+                 });
+                  </text>
+             }
+
+             event.preventDefault();
+         });
+        
+    </script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

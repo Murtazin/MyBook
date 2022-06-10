@@ -1,8 +1,111 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<MyBook.DAL.Entities.Book>
+
+@{
+    ViewData["Title"] = "Электронная библиотека MyBook — читайте книги в онлайн библиотеке. Новинки и бестселлеры литературы в библиотеке электронных книг.";
+    Layout = "_Layout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<header id="site-header" class="site-header__v9 site-header__white-text">
+    <div class="masthead">
+        <div class="container">
+            <div class="rounded-hg d-none d-md-block">
+                <div class="d-flex align-items-center justify-content-center position-relative">
+                    <div class="site-navigation mr-auto d-none d-xl-block">
+                        <ul class="nav pl-xl-4">
+                            <li class="nav-item bg-white rounded-hg mr-2 height-25">
+                                <a asp-controller="Catalog" asp-action="Books" class="nav-link link-black-100 mx-3 px-0 font-size-2 font-weight-medium header-text-color">📖 Книги</a>
+                            </li>
+                            
+                             <li class="nav-item bg-white rounded-hg mr-2 height-25">
+                                <a asp-controller="Catalog" asp-action="FreeBooks" class="nav-link link-black-100 mx-3 px-0 font-size-2 font-weight-medium header-text-color">👌 Бесплатные книги</a>
+                            </li>
+                                    
+                              <li class="nav-item bg-white rounded-hg mr-2 height-25">
+                                <a asp-controller="Catalog" asp-action="Novelties" class="nav-link link-black-100 mx-3 px-0 font-size-2 font-weight-medium header-text-color">🔥 Новинки</a>
+                            </li>
+                                    
+                             <li class="nav-item bg-white rounded-hg mr-2 height-25">
+                                <a asp-controller="Catalog" asp-action="TopBooks" class="nav-link link-black-100 mx-3 px-0 font-size-2 font-weight-medium header-text-color">❤ Топ книг</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="mb-8">
+    <div class="container">
+        <div class="main__title">
+            <div style="width: 50%;">
+                <h1>MyBook - читайте и слушайте по одной подписке</h1>
+                <a asp-action="Index" asp-controller="Sub"><button>∞ дней бесплатно</button></a>
+            </div>
+            <div style="width: 50%">
+                <span>
+                    <img src="~/img/photo.svg" width="460px">
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+    
+ @await Html.PartialAsync("_BookSelection", Model, new ViewDataDictionary(ViewData)
+                                {
+                                    { "SelectionTitle", "Лучшие книги по мнению MyBook" },
+                                    { "SelectionDescription", "Различные книги, которые были избраны редакцией нашего сайта" },
+                                    { "SelectionCondition", Model.OrderByDescending(x => x.Description.Length) }
+                                })
+
+ @await Html.PartialAsync("_BookSelection", Model, new ViewDataDictionary(ViewData)
+                                {
+                                    { "SelectionTitle", "Лучшие новые книги" },
+                                    { "SelectionDescription", "Добавьте лучшее в «Мои книги», чтобы ничего не упустить" },
+                                    { "SelectionCondition", Model.OrderBy(r => r.Rating).ThenBy(d => d.AddedDate) }
+                                })
+
+ @await Html.PartialAsync("_BookSelection", Model, new ViewDataDictionary(ViewData)
+                                {
+                                    { "SelectionTitle", "Десятки тысяч бесплатных книг" },
+                                    { "SelectionDescription", "Родная классика и проверенные временем бестселлеры" },
+                                    { "SelectionCondition", Model.Where(x => x.SubType == 0) }
+                                })
+
+<section class="space-bottom-2">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="bg-soft-yellow-darker rounded-hg">
+                    <div class="pr-4 pl-5 py-3 position-relative">
+                        <div class="font-size-4 font-weight-medium position-relative z-index-2"><b>Все книги доступны одновременно</b></div>
+                        <p>Пользуйтесь подпиской - безлимитным абонементом на весь каталог</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="bg-soft-yellow-darker rounded-hg">
+                    <div class="pr-4 pl-5 py-3 position-relative">
+                        <div class="font-size-4 font-weight-medium position-relative z-index-2"><b>Персональные рекомендации</b></div>
+                        <p>Подбираем книги по вашему вкусу на основе того, что вы прочитали</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="bg-soft-yellow-darker rounded-hg">
+                    <div class="pr-4 pl-5 py-3 position-relative">
+                        <div class="font-size-4 font-weight-medium position-relative z-index-2"><b>Статистика чтения</b></div>
+                        <p>Показываем время, скорость и прогресс вашего чтения в приложении</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ @await Html.PartialAsync("_BookSelection", Model, new ViewDataDictionary(ViewData)
+                                {
+                                    { "SelectionTitle", "Всегда подскажем, что почитать" },
+                                    { "SelectionDescription", "Подбираем книги по темам и рейтингам, держим в курсе книжных новостей" },
+                                    { "SelectionCondition", Model.OrderBy(x=> x.Id) }
+                                })

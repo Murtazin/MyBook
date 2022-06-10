@@ -8,16 +8,196 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.2" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
+        <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.2" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.2" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.2" />
-        <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.0" />
+      <ProjectReference Include="..\MyBook.BLL\MyBook.BLL\MyBook.BLL.csproj" />
+      <ProjectReference Include="..\MyBook.DAL\MyBook.DAL\MyBook.DAL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Lockout.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Login.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Logout.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Register.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\About\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\About\Payments.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Auth\AuthStatus.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Auth\Login.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Auth\PasswordReset.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Auth\Register.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Auth\RestoreAccess.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Catalog\AuthorDetails.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Catalog\BookDetails.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Catalog\Books.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Catalog\FreeBooks.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Catalog\Novelties.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Catalog\Premium.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Catalog\SearchAuthor.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Catalog\SearchBook.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Catalog\TopBooks.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Contact\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Home\AccessDenied.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Home\PageNotFound.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Profile\Favorites.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Profile\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Profile\_UserProfileImage.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Profile\_UserProfilePassword.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_BookSelection.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_BookSelectionNoDescription.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_ChatPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_FooterPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_HeaderPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_Layout.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_Layout1.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_MetatagsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_ModalPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_ScriptsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_SidebarPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_StylesheetsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Shared\_ValidationScriptsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Sub\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Sub\Payment.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Sub\PaymentResult.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\_ViewStart.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Author\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Books\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Dashboard\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Library\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Podcasters\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Sets\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_LoginPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img10.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img2.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img3.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img4.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img5.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img6.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img7.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img8.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\120x180\img9.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\130x152\img1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\1400x530\promo.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x151\img1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img10.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img2.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img3.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img4.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img5.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img6.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img7.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img8.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\150x226\img9.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\162x137\img1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\170x129\img1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\270x378\img1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\280x213\img1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\350x282\img1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\404.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\cancel.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\close.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\favicon.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\logo.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\mybook.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\logo\user.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\LICENSE" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\LICENSE.md" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Data\Migrations" />
+      <Folder Include="Migrations" />
     </ItemGroup>
 
 </Project>
