@@ -6931,15 +6931,18 @@ footer .widget .input-group-sm>select,
 }
 
 .custom-range:focus::-webkit-slider-thumb {
-    box-shadow: 0 0 0 1px #fff, none
+    box-shadow: 0 0 0 1px #fff
+    /*, none*/
 }
 
 .custom-range:focus::-moz-range-thumb {
-    box-shadow: 0 0 0 1px #fff, none
+    box-shadow: 0 0 0 1px #fff
+    /*, none*/
 }
 
 .custom-range:focus::-ms-thumb {
-    box-shadow: 0 0 0 1px #fff, none
+    box-shadow: 0 0 0 1px #fff
+    /*, none*/
 }
 
 .custom-range::-moz-focus-outer {
@@ -22436,7 +22439,7 @@ a.text-red-1:focus {
 }
 
 .text-hide {
-    font: 0/0 a;
+    /*font: 0/0 a;*/
     color: transparent;
     text-shadow: none;
     background-color: transparent;
@@ -23386,45 +23389,45 @@ h6.text-white>a,
     }
 }
 
-@font-face {
-    font-family: cerebri sans;
-    src: url(../fonts/Cerebri-Sans/CerebriSans-Light.eot);
-    src: url(../fonts/Cerebri-Sans/CerebriSans-Light.ttf);
-    font-weight: 300;
-    font-style: normal
-}
+/*@font-face {*/
+/*    font-family: cerebri sans;*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-Light.eot);*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-Light.ttf);*/
+/*    font-weight: 300;*/
+/*    font-style: normal*/
+/*}*/
 
-@font-face {
-    font-family: cerebri sans;
-    src: url(../fonts/Cerebri-Sans/CerebriSans-Regular.eot);
-    src: url(../fonts/Cerebri-Sans/CerebriSans-Regular.ttf);
-    font-weight: 400;
-    font-style: normal
-}
+/*@font-face {*/
+/*    font-family: cerebri sans;*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-Regular.eot);*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-Regular.ttf);*/
+/*    font-weight: 400;*/
+/*    font-style: normal*/
+/*}*/
 
-@font-face {
-    font-family: cerebri sans;
-    src: url(../fonts/Cerebri-Sans/CerebriSans-Medium.eot);
-    src: url(../fonts/Cerebri-Sans/CerebriSans-Medium.ttf);
-    font-weight: 500;
-    font-style: normal
-}
+/*@font-face {*/
+/*    font-family: cerebri sans;*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-Medium.eot);*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-Medium.ttf);*/
+/*    font-weight: 500;*/
+/*    font-style: normal*/
+/*}*/
 
-@font-face {
-    font-family: cerebri sans;
-    src: url(../fonts/Cerebri-Sans/CerebriSans-SemiBold.eot);
-    src: url(../fonts/Cerebri-Sans/CerebriSans-SemiBold.ttf);
-    font-weight: 600;
-    font-style: normal
-}
+/*@font-face {*/
+/*    font-family: cerebri sans;*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-SemiBold.eot);*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-SemiBold.ttf);*/
+/*    font-weight: 600;*/
+/*    font-style: normal*/
+/*}*/
 
-@font-face {
-    font-family: cerebri sans;
-    src: url(../fonts/Cerebri-Sans/CerebriSans-Bold.eot);
-    src: url(../fonts/Cerebri-Sans/CerebriSans-Bold.ttf);
-    font-weight: 700;
-    font-style: normal
-}
+/*@font-face {*/
+/*    font-family: cerebri sans;*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-Bold.eot);*/
+/*    src: url(../fonts/Cerebri-Sans/CerebriSans-Bold.ttf);*/
+/*    font-weight: 700;*/
+/*    font-style: normal*/
+/*}*/
 
 .link-black-100 {
     color: #19110b
@@ -26884,4 +26887,48 @@ footer .widget select.custom-select,
         flex: 0 0 25%;
         max-width: 25%
     }
+}
+.main__title {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 32px 0 0 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.main__title h1 {
+    font-size: 46px;
+    font-weight: 600;
+    line-height: 54px;
+}
+.main__title button {
+    /*font-family: Fira Sans, system-ui, serif;*/
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    height: 48px;
+    margin: 15px 0 0 0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 129, 0)), to(rgb(228, 75, 3)));
+    background: linear-gradient(rgb(255, 129, 0), rgb(228, 75, 3));
+}
+.main__title button:hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 154, 41)), to(rgb(240, 111, 41)));
+    background: linear-gradient(rgb(255, 154, 41), rgb(240, 111, 41));
+}
+.main__title img {
+    padding-top: 10px;
+}
+.main__title div {
+    padding: 0 15px;
 }

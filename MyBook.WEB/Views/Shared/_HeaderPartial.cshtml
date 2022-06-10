@@ -6,20 +6,6 @@
     <div class="masthead">
         <div class="container pt-3 pt-md-4 pb-3 pb-md-5">
             <div class="d-flex align-items-center position-relative flex-wrap">
-                <div class="offcanvas-toggler mr-5">
-                    <a id="sidebarNavToggler2" href="javascript:;" role="button" class="cat-menu" aria-controls="sidebarContent2" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-hide-on-scroll="false" data-unfold-target="#sidebarContent2"
-                       data-unfold-type="css-animation" data-unfold-overlay='{
-                            "className": "u-sidebar-bg-overlay",
-                            "background": "rgba(0, 0, 0, .7)",
-                            "animationSpeed": 100
-                        }' data-unfold-animation-in="fadeInLeft" data-unfold-animation-out="fadeOutLeft" data-unfold-duration="100">
-                        <svg width="20px" height="18px">
-                            <path fill-rule="evenodd" fill="rgb(25, 17, 11)" d="M-0.000,-0.000 L20.000,-0.000 L20.000,2.000 L-0.000,2.000 L-0.000,-0.000 Z" />
-                            <path fill-rule="evenodd" fill="rgb(25, 17, 11)" d="M-0.000,8.000 L15.000,8.000 L15.000,10.000 L-0.000,10.000 L-0.000,8.000 Z" />
-                            <path fill-rule="evenodd" fill="rgb(25, 17, 11)" d="M-0.000,16.000 L20.000,16.000 L20.000,18.000 L-0.000,18.000 L-0.000,16.000 Z" />
-                        </svg>
-                    </a>
-                </div>
                 <div class="site-branding pr-7">
                     <a asp-controller="Home" asp-action="Index" class="d-block mb-1">
                         <svg width="32" height="33" fill="none">
@@ -43,12 +29,6 @@
                     
                     <form class="form-inline my-2 my-xl-0" asp-controller="Catalog" asp-action="Search" method="get">
                         <div class="input-group input-group-borderless w-100">
-                            <div class="input-group-prepend border-right mr-0 d-none d-xl-block">
-                                <select name="selectId" class="custom-select pr-7 pl-4 rounded-right-0 height-5 shadow-none border-0 text-dark" id="inputGroupSelect01">
-                                    <option selected value="1">Книги</option>
-                                    <option value="2">Авторы</option>
-                                </select>
-                            </div>
                             <input name="keyword" id="searchKeyword" type="text" class="form-control px-3" placeholder="Книга или автор">
                             <div class="input-group-append">
                                 <button class="btn bg-white px-3 py-2" type="submit"><i class="mx-1 glph-icon flaticon-loupe"></i></button>
@@ -71,20 +51,20 @@
                                                 if (await UserManager.IsInRoleAsync(await UserManager.FindByNameAsync(User.Identity!.Name), "UserSub"))
                                                 {
                                                     <a asp-controller="Catalog" asp-action="Premium" class="nav-link mx-3 px-0 py-3 font-size-2 font-weight-bold text-yellow-darker">
-                                                        ♕ PREMIUM
+                                                        Подписка
                                                     </a>
                                                 }
                                                 else
                                                 {
                                                     <a asp-controller="Sub" asp-action="Index" class="nav-link mx-3 px-0 py-3 font-size-2 font-weight-bold text-yellow-darker">
-                                                        ♕ PREMIUM
+                                                        Подписка
                                                     </a>
                                                 }
                                             }
                                             else
                                             {
                                                 <a asp-controller="Auth" asp-action="Login" asp-route-returnUrl="@Context.Request.Path" class="nav-link mx-3 px-0 py-3 font-size-2 font-weight-bold text-yellow-darker">
-                                                    ♕ PREMIUM
+                                                    Подписка
                                                 </a>
                                             }
                                         </li>
