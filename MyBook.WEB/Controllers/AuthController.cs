@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBook.BLL.EmailServices;
 using MyBook.DAL.Entities;
+using MyBook.WEB.Models;
 
 namespace MyBook.WEB.Controllers;
 

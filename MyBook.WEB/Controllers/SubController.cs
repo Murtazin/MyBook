@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyBook.DataAccess;
-using MyBook.Entity;
-using MyBook.Entity.Identity;
+using MyBook.DAL.Contexts;
+using MyBook.DAL.Entities;
+using MyBook.DAL.Identity;
 
 namespace MyBook.WEB.Controllers;
 

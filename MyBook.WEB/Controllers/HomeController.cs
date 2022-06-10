@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyBook.DataAccess;
-using MyBook.Models;
+using MyBook.DAL.Contexts;
+using MyBook.WEB.Models;
 
 namespace MyBook.WEB.Controllers;
 

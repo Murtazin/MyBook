@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyBook.Models;
-using MyBook.Services.EmailServices;
+using MyBook.BLL.EmailServices;
+using MyBook.WEB.Models;
 
 namespace MyBook.WEB.Controllers;
 public class ContactController : Controller
