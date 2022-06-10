@@ -54,12 +54,15 @@ $('#search-cancel').on('mousedown', function () {
 
 //Swiper slider
 
-new Swiper('.preview-slider', {
+const slider = document.querySelector('.swiper-container');
+
+new Swiper(slider, {
+	slidesPerView: 8.2,
+	spaceBetween: 16,
 	navigation: {
 		nextEl: '.slider-button-next',
 		prevEl: '.slider-button-prev',
 	},
 	grabCursor: true,
-	autoHeight: true,
 	freeMode: true,
 });
