@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace MyBook.BLL.Services;
+namespace MyBook.BLL.Extensions;
 
 public static class DateTimeExtensions
 {

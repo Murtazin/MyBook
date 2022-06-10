@@ -1,4 +1,4 @@
-﻿namespace MyBook.BLL.Services.EmailServices;
+﻿namespace MyBook.BLL.EmailServices;
 
 public interface IEmailService
 {

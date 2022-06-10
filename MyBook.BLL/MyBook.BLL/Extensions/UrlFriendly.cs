@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MyBook.BLL.Services;
+namespace MyBook.BLL.Extensions;
 
 public static class FriendlyUrlHelper
 {

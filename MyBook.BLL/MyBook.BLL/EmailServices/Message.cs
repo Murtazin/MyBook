@@ -1,6 +1,6 @@
 ﻿using MimeKit;
 
-namespace MyBook.BLL.Services.EmailServices;
+namespace MyBook.BLL.EmailServices;
 
 public class Message
 {
