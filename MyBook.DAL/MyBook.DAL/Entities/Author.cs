@@ -1,9 +1,10 @@
-namespace MyBook.DAL.Entities;
+﻿namespace MyBook.Entity;
 
 public class Author
 {
     public Guid Id { get; set; }
-    public string FirstName { get; set; }
-    public string SecondName { get; set; }
-    public int Age { get; set; }
+    public string FullName { get; set; } = null!;
+    public string Image { get; set; } = null!;
+    public string Description { get; set; } = null!;
+    public List<Book> Books { get; set; } = null!;
 }
