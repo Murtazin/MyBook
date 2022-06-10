@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    @await Html.PartialAsync("_MetatagsPartial")
+    
+    <title>@ViewBag.Title | MyBook — электронная библиотека</title>
+    
+    @await Html.PartialAsync("_StylesheetsPartial")
+    <link rel="stylesheet" href="~/css/auth.css">
+</head>
+
+<body>
+@RenderBody()
+
+@await Html.PartialAsync("_ScriptsPartial")
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

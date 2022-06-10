@@ -1,0 +1,81 @@
+﻿@model dynamic
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="container py-5">
+    <!-- For demo purpose -->
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto text-center">
+            <h2 class="display-6 font-weight-bold">Оформление подписки</h2>
+        </div>
+    </div> <!-- End -->
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card ">
+                <div class="card-header">
+                    <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                        <!-- Credit card form tabs -->
+                        <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                            <li class="nav-item">
+                                 <a href="#" class="nav-link active rounded-hg"> <i class="fas fa-credit-card mr-2"></i> Банковская карта</a>
+                            </li>
+                        </ul>
+                    </div> <!-- End -->
+                    <!-- Credit card form content -->
+                    <div class="tab-content">
+                        <!-- credit card info-->
+                        <div id="credit-card" class="tab-pane fade show active pt-3">
+                            <form role="form" onsubmit="event.preventDefault()">
+                                <div class="form-group">
+                                    <label for="username">
+                                        <h6>Владелец карты</h6>
+                                    </label>
+                                    <input type="text" name="username" class="form-control rounded-hg" placeholder="NAME SURNAME" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardNumber">
+                                        <h6>Номер карты</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control rounded-hg" name="cardNumber" placeholder="1234567890123456" required>
+                                        <div class="input-group-append ml-4">
+                                            <span class="input-group-text text-muted rounded-hg">
+                                                <image src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Mir-logo.SVG.svg" style="object-fit: contain" width="30"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label><span class="hidden-xs">
+                                                <h6>Срок действия</h6>
+                                            </span></label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control rounded-hg" placeholder="MM" required> 
+                                                <input type="number" class="form-control rounded-hg ml-4" placeholder="YY" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-4">
+                                            <label data-toggle="tooltip" title="3 цифры сзади карты">
+                                                <h6>CVV код <i class="fa fa-question-circle d-inline"></i></h6>
+                                            </label>
+                                            <input type="text" class="form-control rounded-hg" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="subscribe btn btn-primary btn-block shadow-sm rounded-hg"
+                                        onclick='window.location = "@Url.Action("Pay", "Sub", new {subId = ViewData["subId"]})";'> Оплатить </button>
+                            </form>
+                        </div>
+                    </div> <!-- End -->
+                    <!-- End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

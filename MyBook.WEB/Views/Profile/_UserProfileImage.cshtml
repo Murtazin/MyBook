@@ -1,0 +1,17 @@
+﻿@model MyBook.WEB.Models.ChangeProfileImageViewModel
+
+
+<form asp-action="ChangeImage" asp-controller="Profile" method="post" enctype="multipart/form-data">
+    <input asp-for="Image" type="file" accept="image/*" class="rounded-hg form-control-file border pl-2 pr-2 py-2" />
+
+    <div class="my-2 d-flex justify-content-md-center">
+        <button type="submit" class="btn rounded-hg border-width-2 font-weight-bold btn-outline-yellow-darker py-1">Изменить</button>
+    </div>
+</form>
+
+@using (Html.BeginForm("ResetImage", "Profile", FormMethod.Post))
+{
+    <div class="my-2 d-flex justify-content-md-center">
+        <button type="submit" class="btn rounded-hg border-width-2 font-weight-bold btn-outline-yellow-darker py-1">Сбросить</button>
+    </div>
+}

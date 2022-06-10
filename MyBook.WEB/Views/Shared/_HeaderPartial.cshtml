@@ -1,0 +1,138 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MyBook.DAL.Entities
+@inject UserManager<User> UserManager
+
+<header id="site-header" class="site-header__v9 site-header__white-text">
+    <div class="masthead">
+        <div class="container pt-3 pt-md-4 pb-3 pb-md-5">
+            <div class="d-flex align-items-center position-relative flex-wrap">
+                <div class="offcanvas-toggler mr-5">
+                    <a id="sidebarNavToggler2" href="javascript:;" role="button" class="cat-menu" aria-controls="sidebarContent2" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-hide-on-scroll="false" data-unfold-target="#sidebarContent2"
+                       data-unfold-type="css-animation" data-unfold-overlay='{
+                            "className": "u-sidebar-bg-overlay",
+                            "background": "rgba(0, 0, 0, .7)",
+                            "animationSpeed": 100
+                        }' data-unfold-animation-in="fadeInLeft" data-unfold-animation-out="fadeOutLeft" data-unfold-duration="100">
+                        <svg width="20px" height="18px">
+                            <path fill-rule="evenodd" fill="rgb(25, 17, 11)" d="M-0.000,-0.000 L20.000,-0.000 L20.000,2.000 L-0.000,2.000 L-0.000,-0.000 Z" />
+                            <path fill-rule="evenodd" fill="rgb(25, 17, 11)" d="M-0.000,8.000 L15.000,8.000 L15.000,10.000 L-0.000,10.000 L-0.000,8.000 Z" />
+                            <path fill-rule="evenodd" fill="rgb(25, 17, 11)" d="M-0.000,16.000 L20.000,16.000 L20.000,18.000 L-0.000,18.000 L-0.000,16.000 Z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="site-branding pr-7">
+                    <a asp-controller="Home" asp-action="Index" class="d-block mb-1">
+                        <svg width="32" height="33" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.4.619C2 .825 0 2.99 0 5.362v22.276c0 2.371 2 4.537 4.4 4.743 3.8.413 7.7.619 11.6.619 3.9 0 7.8-.206 11.6-.619 2.4-.206 4.4-2.372 4.4-4.744V5.363C32 2.991 30 .825 27.7.62A111.1 111.1 0 0016.013 0C12.125 0 8.25.206 4.4.619z" fill="url(#logo_svg__paint0_linear)">
+                            </path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M22.383 8.327a.99.99 0 00-1.09.22L16 13.912l-5.293-5.365a.99.99 0 00-1.09-.22A1.014 1.014 0 009 9.264v12.163c0 .56.448 1.014 1 1.014s1-.454 1-1.014v-9.716l4.293 4.351a.99.99 0 001.414 0L21 11.711v9.716c0 .56.448 1.014 1 1.014s1-.454 1-1.014V9.264c0-.41-.244-.78-.617-.937z" fill="#BE5B04">
+                            </path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.93 17.828l-1.926 1.987-1.926-1.987a.962.962 0 00-1.39 0 1.036 1.036 0 000 1.434l2.333 2.405v3.297c0 .56.44 1.014.983 1.014.543 0 .983-.454.983-1.014v-3.296l2.333-2.406a1.036 1.036 0 000-1.434.962.962 0 00-1.39 0z" fill="#BE5B04">
+                            </path>
+                            <defs>
+                                <linearGradient id="logo_svg__paint0_linear" x1="0" y1="0" x2="0" y2="33" gradientUnits="userSpaceOnUse"><stop stop-color="#F9D860"></stop><stop offset="1" stop-color="#FB9E49"></stop></linearGradient>
+                            </defs>
+                        </svg>
+                        
+                        <svg width="80" height="12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M47.564 8.862c-1.677 0-3.04-1.406-3.04-3.136 0-1.728 1.363-3.135 3.04-3.135s3.04 1.407 3.04 3.135c0 1.73-1.363 3.136-3.04 3.136zm0-8.362c-2.795 0-5.068 2.345-5.068 5.226 0 2.882 2.273 5.227 5.068 5.227 2.794 0 5.068-2.345 5.068-5.226C52.632 2.844 50.36.5 47.564.5zM62.43 8.862c-1.676 0-3.04-1.406-3.04-3.136 0-1.728 1.364-3.135 3.04-3.135 1.677 0 3.041 1.407 3.041 3.135 0 1.73-1.364 3.136-3.04 3.136zm0-8.362c-2.794 0-5.068 2.345-5.068 5.226 0 2.882 2.274 5.227 5.068 5.227 2.795 0 5.069-2.345 5.069-5.226C67.499 2.844 65.225.5 62.43.5zM10.11.963a.99.99 0 00-1.105.226L5.667 4.631 2.33 1.19A.991.991 0 001.225.963a1.046 1.046 0 00-.626.965v7.666c0 .577.454 1.045 1.014 1.045s1.014-.468 1.014-1.045V4.452L4.95 6.849a.992.992 0 001.433 0l2.324-2.397v5.142c0 .577.454 1.045 1.014 1.045s1.014-.468 1.014-1.045V1.928c0-.423-.247-.804-.626-.965zM34.894 8.513h-2.872V6.771h2.872c.45 0 .845.407.845.871s-.395.871-.845.871zm-2.872-5.575h1.858c.45 0 .845.407.845.871s-.395.871-.845.871h-1.858V2.938zm4.416 2.211c.2-.403.314-.857.314-1.34 0-1.633-1.288-2.961-2.872-2.961h-2.872c-.56 0-1.013.468-1.013 1.045v7.665c0 .578.453 1.046 1.013 1.046h3.886c1.583 0 2.872-1.329 2.872-2.962 0-1.047-.53-1.966-1.328-2.493zM22.858 1.502l-3 3.093-3-3.093a.992.992 0 00-1.433 0 1.068 1.068 0 000 1.478l3.42 3.526v3.052c0 .577.453 1.045 1.013 1.045.56 0 1.014-.468 1.014-1.045V6.506l3.42-3.526a1.068 1.068 0 000-1.478.991.991 0 00-1.434 0zM76.703 5.726l3-3.094a1.068 1.068 0 000-1.478.991.991 0 00-1.433 0l-3.676 3.79V1.894c0-.577-.454-1.045-1.013-1.045-.56 0-1.014.468-1.014 1.045v7.665c0 .578.454 1.046 1.014 1.046s1.013-.468 1.013-1.046V6.507l3.676 3.79a.994.994 0 001.433 0 1.068 1.068 0 000-1.478l-3-3.093z" fill="#383434"></path></svg>
+                    </a>
+                </div>
+                
+                             
+                <div class="site-search ml-xl-0 ml-md-auto w-r-100 flex-grow-1 mr-md-5 mt-2 mt-md-0 order-1 order-md-0">
+                    
+                    <form class="form-inline my-2 my-xl-0" asp-controller="Catalog" asp-action="Search" method="get">
+                        <div class="input-group input-group-borderless w-100">
+                            <div class="input-group-prepend border-right mr-0 d-none d-xl-block">
+                                <select name="selectId" class="custom-select pr-7 pl-4 rounded-right-0 height-5 shadow-none border-0 text-dark" id="inputGroupSelect01">
+                                    <option selected value="1">Книги</option>
+                                    <option value="2">Авторы</option>
+                                </select>
+                            </div>
+                            <input name="keyword" id="searchKeyword" type="text" class="form-control px-3" placeholder="Книга или автор">
+                            <div class="input-group-append">
+                                <button class="btn bg-white px-3 py-2" type="submit"><i class="mx-1 glph-icon flaticon-loupe"></i></button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="d-flex align-items-center mt-lg-3 mt-xl-0">
+
+                    <div class="container">
+                        <div class="rounded-hg d-none d-md-block">
+                            <div class="d-flex align-items-center justify-content-center position-relative">
+                                <div class="site-navigation mr-auto d-none d-xl-block">
+                                            
+                                    <ul class="nav pl-xl-4">
+                                        <li class="nav-item">
+                                            @if (User.Identity!.IsAuthenticated)
+                                            {
+                                                if (await UserManager.IsInRoleAsync(await UserManager.FindByNameAsync(User.Identity!.Name), "UserSub"))
+                                                {
+                                                    <a asp-controller="Catalog" asp-action="Premium" class="nav-link mx-3 px-0 py-3 font-size-2 font-weight-bold text-yellow-darker">
+                                                        ♕ PREMIUM
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-controller="Sub" asp-action="Index" class="nav-link mx-3 px-0 py-3 font-size-2 font-weight-bold text-yellow-darker">
+                                                        ♕ PREMIUM
+                                                    </a>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="Auth" asp-action="Login" asp-route-returnUrl="@Context.Request.Path" class="nav-link mx-3 px-0 py-3 font-size-2 font-weight-bold text-yellow-darker">
+                                                    ♕ PREMIUM
+                                                </a>
+                                            }
+                                        </li>
+                                        
+                                        @if (!User.Identity!.IsAuthenticated)
+                                        {
+                                            <li class="nav-item">
+                                                <a asp-controller="Auth" asp-action="Login" asp-route-returnUrl="@Context.Request.Path" class="nav-link mx-3 px-0 py-3 font-size-2 font-weight-bold header-text-color">
+                                                    <i class="flaticon-user"></i>
+                                                    Войти
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            var user = User.Identity!.IsAuthenticated ? (User) await UserManager.FindByNameAsync(User.Identity!.Name) : null;
+                                            
+                                            <li class="nav-item">
+                                                <a asp-controller="Profile" asp-action="Favorites" class="nav-link mx-3 px-0 py-3 font-size-2 font-weight-bold header-text-color">Мои книги</a>
+                                            </li>
+
+                                            <li class="nav-item dropdown">
+                                                <a id="blogDropdownInvoker" href="#" class="dropdown-toggle header-text-color nav-link mx-3 py-md-2d75 px-0 d-flex align-items-center" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#blogDropdownMenu" data-unfold-type="css-animation" data-unfold-duration="200" data-unfold-delay="50" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                                                    <img src="data:image/png;base64,@(user?.Image)" alt="img" width="30" height="30" style="object-fit: cover" class="rounded-md border border-windsor-tan border-width-2">
+                                                </a>
+                                                <ul id="blogDropdownMenu" class="dropdown-unfold dropdown-menu font-size-2 rounded-hg u-unfold--css-animation u-unfold--hidden" aria-labelledby="blogDropdownInvoker" style="animation-duration: 200ms; display: block !important;">
+                                                    <h6 class="dropdown-header2 font-weight-bold">@(user?.Name) @(user?.LastName)</h6>
+                                                    <li>
+                                                        <a asp-controller="Profile" asp-action="Index" class="dropdown-item font-weight-bold header-text-color">Профиль</a>
+                                                    </li>
+                                                    <form asp-controller="Auth" asp-action="Logout" method="post">
+                                                        <li class="nav-item">
+                                                            <button type="submit" class="dropdown-item font-weight-bold header-text-color border-0">
+                                                                Выйти
+                                                            </button>
+                                                        </li>
+                                                    </form>
+                                                </ul>
+                                            </li>
+                                        }
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

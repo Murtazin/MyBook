@@ -1,77 +1,107 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - MyBook.WEB</title>
-	<link rel="stylesheet" href="./style/style.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-	<link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/MyBook.WEB.styles.css" asp-append-version="true" />
-	<script src="https://code.jquery.com/jquery-3.6.0.js"
-		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    @await Html.PartialAsync("_MetatagsPartial")
+
+    <title>@ViewBag.Title | MyBook — электронная библиотека</title>
+
+    @await Html.PartialAsync("_StylesheetsPartial")
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-migrate/dist/jquery-migrate.min.js"></script>
 </head>
 
 <body>
-	<header>
-		<div class="header__container">
-			<nav>
-				<div class="nav__logo">
-					<img src="~/img/logo/logo.svg" alt="">
-					<img src="~/img/logo/mybook.svg" alt="">
-				</div>
-				<div class="nav__search">
-					<span>
-						<input id="search-input" type="text" placeholder="Книга или автор">
-						<button style="display: none;" id="search-cancel"><img src="~/img/logo/cancel.svg"
-								alt=""></button>
-					</span>
-				</div>
-				<div class="nav__links">
-					<div><a>Что выбрать</a></div>
-					<div><a>Библиотека</a></div>
-					<div><a>Подписка</a></div>
-				</div>
-				<div class="nav__btn-login">
-					<a asp-area="Identity" asp-page="/Account/Login">Войти</a>
-				</div>
-			</nav>
-			<menu>
-				<div>
-					<a href="" class="menu__link">📖 Книги </a>
-				</div>
-				<div>
-					<a href="" class="menu__link">🎧 Аудиокниги</a>
-				</div>
-				<div>
-					<a href="" class="menu__link">👌 Бесплатные книги</a>
-				</div>
-				<div>
-					<a href="" class="menu__link">🔥 Новинки</a>
-				</div>
-				<div>
-					<a href="" class="menu__link">❤️ Топ книг</a>
-				</div>
-				<div>
-					<a href="" class="menu__link">🎙 Топ аудиокниг</a>
-				</div>
-				<div>
-					<a href="" class="menu__link">🎙 Загрузи свой подкаст</a>
-				</div>
-			</menu>
-		</div>
-	</header>
+@await Html.PartialAsync("_HeaderPartial")
+@await Html.PartialAsync("_SidebarPartial")
+@await Html.PartialAsync("_ModalPartial")
 
-	@RenderBody()
+@RenderBody()
 
-	<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-	<script src="~/js/javascript.js"></script>
-	@await RenderSectionAsync("Scripts", required: false)
+@await Html.PartialAsync("_ChatPartial")
+@await Html.PartialAsync("_FooterPartial")
+@await Html.PartialAsync("_ScriptsPartial")
+
+<script>
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/chat")
+            .build();
+        
+        document.getElementById("sendButton").disabled = true;
+        let template = document.getElementById('chatbox-template');       
+        
+         hubConnection.on("ReceiveMessage", function (user, image, to, message) {                      
+                    let elem = document.createElement('div');
+                    
+                    if ("@User.Identity!.Name" === user)    
+                        elem.classList.add('chatbox__body__message', 'chatbox__body__message--right');
+                    else
+                        elem.classList.add('chatbox__body__message', 'chatbox__body__message--left');
+                   
+                    elem.innerHTML = template.innerHTML;
+                    let messageTemplate = elem.querySelector('#messageTemplate');
+                    let senderTemplate = elem.querySelector('#senderTemplate');
+                    let dateTemplate = elem.querySelector('#dateTemplate');
+                    let imageTemplate = elem.querySelector('#imageTemplate');
+                    
+                    if (to !== null)
+                        messageTemplate.innerHTML = `<strong>${to},</strong> ${message.toString()}`;
+                    else
+                         messageTemplate.innerHTML = message.toString();
+                    
+                    senderTemplate.innerHTML = user;
+                    imageTemplate.src = `data:image/png;base64,${image}`
+ 
+                    dateTemplate.innerHTML = new Date().toLocaleString();
+                    document.getElementById('chatroom').appendChild(elem);
+         });
+
+         hubConnection.on("Notify", function (message) {                      
+                             let elem = document.createElement('h6');
+                             elem.classList.add('font-size-2', 'font-weight-medium', 'mb-2');                        
+                             elem.innerHTML = message.toString(); 
+                             document.getElementById('chatroom').appendChild(elem);
+                  });
+         
+         hubConnection.start().then(function () {
+             document.getElementById("sendButton").disabled = false;
+         }).catch(function (err) {
+             return console.error(err.toString());
+         });
+        
+         document.getElementById("sendButton").addEventListener("click", function (event) {
+             let message = document.getElementById("messageInput").value;      
+             
+             @if (User.IsInRole("Admin"))
+             {
+                 <text>
+                 let receiver = document.getElementById("receiverInput").value;
+                 if (receiver !== "") {       
+                     hubConnection.invoke("SendMessageToGroup", receiver, message).catch(function (err) {
+                         return console.error(err.toString());
+                     });
+                 }
+                 else {
+                     hubConnection.invoke("SendMessage", message).catch(function (err) {
+                         return console.error(err.toString());
+                     });
+                 }
+                 </text>
+             }
+             else
+             {
+                 <text>
+                 hubConnection.invoke("SendMessage", message).catch(function (err) {
+                     return console.error(err.toString());
+                 });
+                  </text>
+             }
+
+             event.preventDefault();
+         });
+        
+    </script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
-
 </html>

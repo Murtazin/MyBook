@@ -1,0 +1,109 @@
+﻿@model ContactViewModel
+
+@{
+ ViewBag.Title = "Связаться";
+ Layout = "_Layout";
+}
+
+<main id="content">
+ <div class="py-3 py-lg-7">
+  <h6 class="font-weight-bold font-size-10 text-center my-1">Связаться</h6>
+ </div>
+ 
+ <div class="container">
+  <iframe class="rounded-hg" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kremlyovskaya%20St,%2035,%20Kazan,%20Republic%20of%20Tatarstan,%20420111+(Outsiders%20Team)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" height="500" style="border:0; width:100%;" allowfullscreen=""></iframe>
+  <div class="space-bottom-1 space-bottom-lg-2">
+   <div class="pb-4">
+    <div class="col-lg-8 mx-auto">
+     <div class="bg-white mt-md-n13 px-8 pt-lg-7 pb-lg-7 rounded-hg">
+      <div class="ml-xl-4">
+       <div class="mb-4 mb-lg-7">
+        <h6 class="font-weight-bold font-size-7 mb-4 mb-lg-7">Контактные данные</h6>
+        <p class="font-weight-medium font-italic">Ответим на ваши любые вопросы о подписке, работе сервиса прямо здесь.
+        </p>
+       </div>
+       <div class="mb-4 mb-lg-8">
+        <div class="row">
+         <div class="col-md-6">
+          <h6 class="font-weight-bold font-size-4 mb-4">Офис в Казани</h6>
+          <address class="font-size-2 mb-5">
+           <span class="mb-2 font-weight-normal text-dark">
+            ул. Кремлевская 35, Республика Татарстан
+            <br> Россия
+           </span>
+          </address>
+          <div>
+           <a href="mailto:support@mybook.ru" class="font-size-2 d-block link-black-100 mb-1 font-weight-bold">support@mybook.ru</a>
+           <a href="tel:+7(991)-000-70-00" class="font-size-2 d-block link-black-100 font-weight-bold">+7 991-000-70-00</a>
+          </div>
+         </div>
+         
+        </div>
+       </div>
+       <div class="mb-5 mb-xl-9 pb-xl-1">
+        <h6 class="font-size-4 font-weight-bold">Социальные сети</h6>
+        <ul class="list-unstyled mb-0 d-flex">
+         <li class="btn pl-0">
+          <a class="link-black-100" href="https://vk.com/mybook_ru">
+           <span class="fab fa-vk"></span>
+          </a>
+         </li>
+         <li class="btn">
+          <a class="link-black-100" href="https://www.youtube.com/c/MyBookVideos">
+           <span class="fab fa-youtube"></span>
+          </a>
+         </li>
+        </ul>
+       </div>
+       <div>
+        <h6 class="font-weight-bold font-size-7 mb-3 pb-xl-1">Напишите нам на почту</h6>
+        
+        <form asp-controller="Contact" asp-action="Send" method="post">
+         <div class="alert alert-info alert-dismissible" asp-validation-summary="ModelOnly">
+          <a class="close" data-dismiss="alert">×</a>
+         </div>
+         
+         <div class="row">
+          <div class="col-sm-6 mb-5">
+           <div class="js-form-message">
+            <label for="exampleFormControlInput1">Имя</label>
+            <input asp-for="Name" id="exampleFormControlInput1" type="text" class="form-control rounded-hg" placeholder="Ваше имя" required>
+           </div>
+          </div>
+
+          <div class="col-sm-6 mb-5">
+           <div class="js-form-message">
+            <label for="exampleFormControlInput2">Email</label>
+            <input asp-for="Email" id="exampleFormControlInput2" type="email" class="form-control rounded-hg" placeholder="Ваша почта" required>
+           </div>
+          </div>
+
+          <div class="col-sm-12 mb-5">
+           <div class="js-form-message">
+            <label for="exampleFormControlInput3">Тема</label>
+            <input asp-for="Subject" id="exampleFormControlInput3" type="text" class="form-control rounded-hg" placeholder="Тема обращения" required>
+           </div>
+          </div>
+
+          <div class="col-sm-12 mb-5">
+           <div class="js-form-message">
+            <div class="input-group flex-column">
+             <label for="exampleFormControlInput4">Распишите в деталях причину вашего обращения</label>
+             <textarea asp-for="Message" id="exampleFormControlInput4" class="form-control rounded-hg pl-3 font-size-2 placeholder-color-3" rows="6" cols="77" placeholder="В чем заключается ваша проблема" required></textarea>
+            </div>
+           </div>
+          </div>
+
+          <div class="col d-flex justify-content-lg-start">
+           <button type="submit" class="btn btn-wide btn-gradient-2 text-white rounded-hg transition-3d-hover height-55">Отправить</button>
+          </div>
+         </div>
+        </form>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</main>

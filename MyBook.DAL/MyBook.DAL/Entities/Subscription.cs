@@ -1,12 +1,10 @@
-using MyBook.DAL.Enums;
-
-namespace MyBook.DAL.Entities;
+﻿namespace MyBook.DAL.Entities;
 
 public class Subscription
 {
-    public Guid Id { get; set; }
-    public SubscryptionType Name { get; set; }
-    public string Description { get; set; }
-    public int Duration { get; set; }
-    public float Cost { get; set; }
+    public int Id { get; set; }
+    public decimal Price { get; set; }
+    public string Name { get; set; } = null!;
+    public int Duration { get; set; } //minutes ??
+    public string Description { get; set; } = null!;
 }

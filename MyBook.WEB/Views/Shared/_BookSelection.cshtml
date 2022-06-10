@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MyBook.DAL.Entities.Book>
+
+<section class="space-bottom-1">
+    <div class="container">
+        <div class="bg-white rounded-hg mb-4 mb-xl-0">
+            <div class="pr-4 pl-5 py-4 position-relative">
+               
+                <header class="d-md-flex justify-content-between align-items-center">
+                    <h2 class="font-size-5 mb-0 font-weight-bold">@ViewData["SelectionTitle"]</h2>
+                    <a asp-controller="Catalog" asp-action="Books" class="d-flex align-items-center h-primary">Еще<span class="flaticon-next font-size-3 ml-2"></span></a>
+                </header>
+                <p>@ViewData["SelectionDescription"]</p>
+                <ul class="js-slick-carousel products list-unstyled my-0" data-pagi-classes="d-xl-none text-center u-slick__pagination mb-0 mt-3 mt-lg-5" data-arrows-classes="d-none d-lg-block u-slick__arrow u-slick__arrow-centered--y border-0 h-dark-white"
+                    data-arrow-left-classes="fas flaticon-back u-slick__arrow-inner u-slick__arrow-inner--left ml-lg-n10" data-arrow-right-classes="fas flaticon-next u-slick__arrow-inner u-slick__arrow-inner--right mr-lg-n10" data-slides-show="6" data-responsive='[{
+                       "breakpoint": 1500,
+                       "settings": {
+                         "slidesToShow": 4
+                       }
+                    }, {
+                       "breakpoint": 1199,
+                       "settings": {
+                         "slidesToShow": 4
+                       }
+                    }, {
+                       "breakpoint": 992,
+                       "settings": {
+                         "slidesToShow": 3
+                       }
+                    },{
+                       "breakpoint": 554,
+                       "settings": {
+                         "slidesToShow": 1
+                       }
+                    }]'>
+                    @foreach (var book in (IEnumerable<MyBook.DAL.Entities.Book>)ViewData["SelectionCondition"]!)
+                    {
+                        <li class="slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 199px; height: auto;" tabindex="0" role="tabpanel" id="slick-slide13" aria-describedby="slick-slide-control13">
+                            <div class="overflow-hidden px-sm-4d75">
+                                <div class="d-block position-relative">
+                                    <a asp-controller="Catalog" asp-action="BookDetails" asp-route-id="@book.Id" class="d-block" tabindex="0"><img src="@book.Image" style="width: 120px; height: 180px;" class="d-block mx-auto img-fluid rounded-hg border" alt="image-description"></a>
+
+                                    <div class="pt-2 bg-white px-lg-2">
+                                        <div class="d-flex font-size-3 justify-content-center">
+                                            <div class="text-yellow-darker">
+                                                @{
+                                                    var i = 1;
+                                                }
+                                                @for (; i <= Math.Round(book.Rating); i++)
+                                                {
+                                                    <small class="fas fa-star"></small>
+                                                }
+                                                @for (var j = 0; j <= 5 - i; j++)
+                                                {
+                                                    <small class="far fa-star"></small>
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <h2 class="h6 text-lh-md mb-1 font-size-2 crop-text-2 h-dark text-center font-weight-bold"><a asp-controller="Catalog" asp-action="BookDetails" asp-route-id="@book.Id">@book.Title</a></h2>
+                                        <div class="font-size-2  mb-1 text-truncate text-center"><a asp-controller="Catalog" asp-action="AuthorDetails" asp-route-id="@book.Author.Id" class="text-red-1"><b>@book.Author.FullName</b></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

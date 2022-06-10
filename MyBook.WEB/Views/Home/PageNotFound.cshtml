@@ -1,0 +1,26 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Не найдено";
+    Layout = "_Layout";
+}
+
+<main id="content">
+    <div class="container">
+        <div class="space-bottom-1 space-top-xl-2 space-bottom-xl-4">
+            <div class="d-flex flex-column align-items-center pt-lg-7 pb-lg-4 pb-lg-6">
+                <img src="~/img/404.svg" alt="">
+                <h1 class="font-weight-medium font-size-46 text-lh-sm mt-xl-1">Ошибка 404</h1>
+                <h6 class="font-size-4 font-weight-medium mb-2">Увы, по этому адресу ничего нет.</h6>
+                <span class="font-size-2 mb-6">Нажмите, чтобы перейти на главную страницу.</span>
+                <div class="d-flex align-items-center flex-column">
+                    <form asp-controller="Home" asp-action="Index" method="get">
+                        <button type="submit" class="btn btn-gradient-2 rounded-hg text-white btn-wide height-60 width-250 font-weight-bold">
+                            На главную
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
