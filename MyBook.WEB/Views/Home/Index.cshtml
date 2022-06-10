@@ -37,23 +37,15 @@
 
 <section class="mb-8">
     <div class="container">
-        <div class="pt-5 pb-5">
-            <div class="bg-img-hero img-fluid rounded-hg" style="background-image: url(img/1400x530/promo.jpg);">
-                <div class="js-slick-carousel u-slick" data-pagi-classes="d-lg-none text-center u-slick__pagination mt-5 position-absolute left-0 right-0" data-arrows-classes="d-none d-lg-block u-slick__arrow u-slick__arrow--v4 u-slick__arrow-centered--y" data-arrow-left-classes="flaticon-back u-slick__arrow-inner u-slick__arrow-inner--left text-gray-360 ml-lg-3"
-                     data-arrow-right-classes="flaticon-next u-slick__arrow-inner u-slick__arrow-inner--right text-dark mr-lg-3">
-                    <div class="px-4 px-md-6 px-lg-7 px-xl-10 d-flex min-height-530">
-                        <div class="max-width-565 my-auto">
-                            <div class="media">
-                                <div class="media-body align-self-center mb-4 mb-lg-0">
-                                    <h2 class="font-size-15 mb-3 pb-1" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
-                                        <span class="hero__keyword-line-1 font-weight-normal d-block"><b>MyBook — читайте и слушайте по одной подписке</b></span>
-                                    </h2>
-                                    <a asp-controller="Sub" asp-action="Index" class="banner_btn btn btn-wide btn-gradient rounded-hg font-weight-bold" data-scs-animation-in="fadeInLeft" data-scs-animation-delay="400">Оформить сейчас</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>           
-                </div>
+        <div class="main__title">
+            <div style="width: 50%;">
+                <h1>MyBook - читайте и слушайте по одной подписке</h1>
+                <a asp-action="Index" asp-controller="Sub"><button>∞ дней бесплатно</button></a>
+            </div>
+            <div style="width: 50%">
+                <span>
+                    <img src="~/img/photo.svg" width="460px">
+                </span>
             </div>
         </div>
     </div>

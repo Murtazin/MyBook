@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyBook.WEB.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220610093057_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220610141633_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -337,8 +337,8 @@ namespace MyBook.WEB.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -351,7 +351,7 @@ namespace MyBook.WEB.Migrations
                             Description = "📚  Все книги\n💌  Персональные рекомендации\n👌  Первоклассная поддержка",
                             Duration = 30,
                             Name = "Месяц",
-                            Price = 349m
+                            Price = 229
                         },
                         new
                         {
@@ -359,7 +359,7 @@ namespace MyBook.WEB.Migrations
                             Description = "📚  Все книги\n💌  Персональные рекомендации\n👌  Первоклассная поддержка",
                             Duration = 365,
                             Name = "Год",
-                            Price = 2988m
+                            Price = 2748
                         },
                         new
                         {
@@ -367,7 +367,7 @@ namespace MyBook.WEB.Migrations
                             Description = "📚  Все книги\n💌  Персональные рекомендации\n👌  Первоклассная поддержка",
                             Duration = 180,
                             Name = "Полгода",
-                            Price = 1794m
+                            Price = 1374
                         },
                         new
                         {
@@ -375,7 +375,7 @@ namespace MyBook.WEB.Migrations
                             Description = "📚  Все бесплатные книги",
                             Duration = -1,
                             Name = "Бесплатно",
-                            Price = 0m
+                            Price = 0
                         });
                 });
 
@@ -475,9 +475,9 @@ namespace MyBook.WEB.Migrations
                             LockoutEnabled = true,
                             Name = "Admin",
                             NormalizedUserName = "ADMIN@MYBOOK.RU",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDYUokR+5txJijih3Msn/q2G4nADQQ5sNk7iXoPSTGFMays3aC2auntcLw3WYEBDxw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGYmfe/PlPgkIzIRRgjCzO28JP+lzoo06eMrBOCqUrV1Y2PDvYGL9R1elt483UIyXA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c2f18bc7-7c59-44b7-9e5a-5bffdd3c0630",
+                            SecurityStamp = "3a8b0071-22b9-43e6-b9e9-650080b7630e",
                             SubDateStart = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SubId = 4,
                             TwoFactorEnabled = false,
@@ -515,21 +515,21 @@ namespace MyBook.WEB.Migrations
                         new
                         {
                             Id = new Guid("6f17d951-3ad5-49f9-b333-2a37e367333d"),
-                            ConcurrencyStamp = "caa56b38-6a4d-48b2-8182-e9398af7bc54",
+                            ConcurrencyStamp = "ba41fc09-3724-481e-855e-86df9c6d685d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = new Guid("12d534a7-4535-4819-8704-bcfd7553ab46"),
-                            ConcurrencyStamp = "c8b9d061-5000-4e2c-8f81-2e4b1ff78a17",
+                            ConcurrencyStamp = "914fdc1e-fadb-4927-b325-8667243fbf53",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = new Guid("6dc02633-d464-4f86-8575-4cb190d670a6"),
-                            ConcurrencyStamp = "50325bca-6297-4e29-b0ae-233eedc6a576",
+                            ConcurrencyStamp = "3ea7a050-7fb0-4ec4-8175-ba21b791721a",
                             Name = "UserSub",
                             NormalizedName = "USERSUB"
                         });

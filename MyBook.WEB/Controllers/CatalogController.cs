@@ -74,9 +74,7 @@ public class CatalogController : Controller
     {
         if (keyword == null)
             return RedirectToAction("PageNotFound", "Home");
-
-        if (selectId == 1)
-        {
+        
             var allBooks = await _context.Books
                 .Include(a => a.Author)
                 .ToListAsync();
@@ -91,17 +89,7 @@ public class CatalogController : Controller
                     .Contains(string.Concat(keyword.ToLower().Where(c => !char.IsWhiteSpace(c))))));
 
             return View("SearchBook", books);
-        }
 
-        if (selectId == 2)
-        {
-            var authors = (await _context.Authors.ToListAsync())
-                .Where(x => string.Concat(x.FullName.ToLower().Where(c => !char.IsWhiteSpace(c)))
-                    .Contains(string.Concat(keyword.ToLower().Where(c => !char.IsWhiteSpace(c)))));
-
-            return View("SearchAuthor", authors);
-        }
-
-        return RedirectToAction("PageNotFound", "Home");
+            return RedirectToAction("PageNotFound", "Home");
     }
 }
