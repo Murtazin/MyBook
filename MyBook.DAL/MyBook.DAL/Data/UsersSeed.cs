@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MyBook.Entity;
+using MyBook.DAL.Entities;
 
-namespace MyBook.DataAccess.Seed;
+namespace MyBook.DAL.Data;
 
 public partial class Seeds
 {

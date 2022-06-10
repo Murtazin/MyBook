@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MyBook.Entity.Identity;
+using MyBook.DAL.Identity;
 
-namespace MyBook.DataAccess.Seed;
+namespace MyBook.DAL.Data;
 
 public class RoleSeed : IEntityTypeConfiguration<Role>
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace MyBook.Entity.Identity;
+namespace MyBook.DAL.Identity;
 
 public class Role : IdentityRole<Guid>
 {

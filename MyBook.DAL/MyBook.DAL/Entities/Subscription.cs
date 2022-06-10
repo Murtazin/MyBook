@@ -1,4 +1,4 @@
-﻿namespace MyBook.Entity;
+﻿namespace MyBook.DAL.Entities;
 
 public class Subscription
 {

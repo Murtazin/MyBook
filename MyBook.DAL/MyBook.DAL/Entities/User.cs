@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using MyBook.Entity.Identity;
+using MyBook.DAL.Identity;
 
-namespace MyBook.Entity;
+namespace MyBook.DAL.Entities;
 
 public class User : IdentityUser<Guid>
 {
