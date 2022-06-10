@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using MyBook.BLL.EmailServices
+@using MyBook.BLL.Extensions
+@model IEnumerable<MyBook.DAL.Entities.Book>
+
+@{
+    ViewData["Title"] = "Новинки";
+    Layout = "_Layout";
+}
+
+<div class="page-header border-bottom">
+    <div class="container">
+        <div class="d-md-flex justify-content-between align-items-center py-4">
+            <nav class="font-size-2 header-text-color">
+                <a asp-controller="Home" asp-action="Index" class="header-text-color">MyBook — Электронная библиотека</a>
+                <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>
+                <span class="header-text-color">Каталог</span>
+                <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>@ViewBag.Title
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="pt-4">
+        <h1 class="font-weight-bold">Подборки последних новинок книг</h1>
+        <p class="text-gray-700 font-size-2">На этой странице представлены подборки последних новинок книг и аудиокниг от лучших авторов. Подборки обновляются каждую неделю, что позволит каждому читателю найти книгу по своему вкусу. Начните читать последние новинки прямо на сайте или установите наше удобное приложение, чтобы не расставаться с любимыми книгами даже при отсутствии подключения к интернету!</p>
+    </div>
+</div>
+
+
+@for (var week = DateTime.Today.GetWeeksInYear(); week >= 1; week--)
+{
+    if (Model.Count(x => x.AddedDate.GetWeekOfYear() == week) != 0)
+    {
+        var weekStart = DateTime.Today.GetWeekStartDate(week);
+        var weekEnd = DateTime.Today.GetWeekStartDate(week).AddDays(6);
+
+        var week1 = week;
+        @await Html.PartialAsync("_BookSelectionNoDescription", Model, new ViewDataDictionary(ViewData)
+        {
+            { "SelectionTitle", $"Новинки недели {(weekStart.Month == weekEnd.Month ? weekStart.Day : weekStart.ToString("d MMMM"))} - {weekEnd:d MMMM}"},
+            { "SelectionCondition", Model.Where(x => x.AddedDate.GetWeekOfYear() == week1) }
+        })
+    }
+}

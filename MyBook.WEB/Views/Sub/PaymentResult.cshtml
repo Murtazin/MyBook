@@ -1,0 +1,24 @@
+﻿@{
+	ViewData["Title"] = "Результат подписки";
+    Layout = "_Layout";
+}
+
+<div class="container py-13">
+	<div class="row">
+		<div class="col-md-6 mx-auto mt-5">
+			<div class="mt-4 d-flex justify-content-md-center">
+				<h1>@(ViewData["result"] ?? "Вы потерялись?")</h1>
+			</div>
+			<form>
+				<div class="mt-4 d-flex justify-content-md-center">
+					<button
+						type="button"
+						class="btn rounded-hg border-width-2 font-weight-bold btn-outline-yellow-darker"
+						onclick='window.location = "@Url.Action("Index", "Home")";'>
+						На главную
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

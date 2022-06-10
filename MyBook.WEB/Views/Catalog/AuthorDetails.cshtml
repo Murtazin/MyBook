@@ -1,0 +1,128 @@
+﻿@model MyBook.DAL.Entities.Author
+
+@{
+    ViewBag.Title = $"\"{Model.FullName}\"";
+    Layout = "_Layout";
+}
+
+<div class="page-header border-bottom">
+    <div class="container">
+        <div class="d-md-flex justify-content-between align-items-center py-4">
+            <nav class="font-size-2 header-text-color">
+                <a asp-controller="Home" asp-action="Index" class="header-text-color">MyBook — Электронная библиотека</a>
+                <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>
+                <span class="header-text-color">Каталог</span>
+                <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>
+                <span class="header-text-color">Авторы</span>
+                <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>@ViewBag.Title
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div id="primary">
+    <div class="background-image"></div>
+    <div class="container border-bottom mb-5">
+        <div class="row">
+            <div class="col-md-5 d-flex justify-content-end">
+                <div class="space-top-1 mb-0">
+                    <img src="@Model.Image" alt="Image Description" class="mx-auto img-fluid rounded-hg border border-width-2">
+                </div>
+            </div>
+            <div class="col-md-5 pl-0 border-left">
+                <div class="space-top-1 px-4 px-xl-7 pb-5">
+                    <div class="mb-4">
+                        <h1 class="font-weight-bold">@Model.FullName</h1>
+                        <span class="font-weight-medium mb-2 font-size-2 text-gray-600 mb-4">@Model.Books.Count книг на сайте</span>
+                    </div>
+
+                    <div class="mb-4">
+                        <a type="button" asp-controller="Catalog" asp-action="Search" asp-route-selectId="1" asp-route-keyword="@Model.FullName"
+                           class="btn btn-block btn-gradient transition-3d-hover rounded-hg font-weight-bold">Читать книги онлайн</a>
+                    </div>
+
+                    <div class="mb-5">
+                        <h4 class="font-weight-bold">Об авторе</h4>
+                        <p class="font-size-2">@Model.Description</p>
+                    </div>
+
+                    <div class="py-5 d-flex align-items-center border-top">
+                        <ul class="list-unstyled nav">
+                            <li class="mr-6">
+                                <a href="#" class="h-primary"><i class="flaticon-share mr-2"></i>Поделиться</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="space-bottom-1">
+        <div class="container">
+            <div class="bg-white rounded-hg mb-4 mb-xl-0">
+                <div class="pr-4 pl-5 py-4 position-relative">
+                   
+                    <header class="d-md-flex justify-content-between align-items-center">
+                        <h2 class="font-size-5 mb-0 font-weight-bold">Книги <span class="text-red-1">@Model.Books.Count</span></h2>
+                        <a asp-controller="Catalog" asp-action="Search" asp-route-selectId="1" asp-route-keyword="@Model.FullName" class="d-flex align-items-center h-primary">Еще<span class="flaticon-next font-size-3 ml-2"></span></a>
+                    </header>
+                    <ul class="js-slick-carousel products list-unstyled my-0" data-pagi-classes="d-xl-none text-center u-slick__pagination mb-0 mt-3 mt-lg-5" data-arrows-classes="d-none d-lg-block u-slick__arrow u-slick__arrow-centered--y border-0 h-dark-white"
+                        data-arrow-left-classes="fas flaticon-back u-slick__arrow-inner u-slick__arrow-inner--left ml-lg-n10" data-arrow-right-classes="fas flaticon-next u-slick__arrow-inner u-slick__arrow-inner--right mr-lg-n10" data-slides-show="6" data-responsive='[{
+                           "breakpoint": 1500,
+                           "settings": {
+                             "slidesToShow": 4
+                           }
+                        }, {
+                           "breakpoint": 1199,
+                           "settings": {
+                             "slidesToShow": 4
+                           }
+                        }, {
+                           "breakpoint": 992,
+                           "settings": {
+                             "slidesToShow": 3
+                           }
+                        },{
+                           "breakpoint": 554,
+                           "settings": {
+                             "slidesToShow": 1
+                           }
+                        }]'>
+                        @foreach (var book in Model.Books)
+                        {
+                            <li class="slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 199px; height: auto;" tabindex="0" role="tabpanel" id="slick-slide13" aria-describedby="slick-slide-control13">
+                                <div class="overflow-hidden px-sm-4d75">
+                                    <div class="d-block position-relative">
+                                        <a asp-controller="Catalog" asp-action="BookDetails" asp-route-id="@book.Id" class="d-block" tabindex="0"><img src="@book.Image" style="width: 120px; height: 180px;" class="d-block mx-auto img-fluid rounded-hg border" alt="image-description"></a>
+    
+                                        <div class="pt-2 bg-white px-lg-2">
+                                            <div class="d-flex font-size-3">
+                                                <div class="text-yellow-darker pl-4">
+                                                    @{
+                                                        var i = 1;
+                                                    }
+                                                    @for (; i <= Math.Round(book.Rating); i++)
+                                                    {
+                                                        <small class="fas fa-star"></small>
+                                                    }
+                                                    @for (var j = 0; j <= 5 - i; j++)
+                                                    {
+                                                        <small class="far fa-star"></small>
+                                                    }
+    
+                                                </div>
+                                            </div>
+                                            <h2 class="h6 text-lh-md mb-1 font-size-2 crop-text-2 h-dark text-center font-weight-bold"><a asp-controller="Catalog" asp-action="BookDetails" asp-route-id="@book.Id">@book.Title</a></h2>
+                                            <div class="font-size-2  mb-1 text-truncate text-center"><a asp-controller="Catalog" asp-action="AuthorDetails" asp-route-id="@book.Author.Id" class="text-red-1"><b>@book.Author.FullName</b></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

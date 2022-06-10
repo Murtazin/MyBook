@@ -1,0 +1,66 @@
+﻿<div class="container">
+	<div class="row">
+		<div class="chatbox chatbox--tray rounded-hg">
+			<div class="chatbox__title d-flex justify-content-between">
+				<button type="button" class="btn text-white">
+					<i class="fas fa-comment"></i>
+				</button>
+				<button class="chatbox__title__close">
+					<span>
+						<svg viewBox="0 0 12 12" width="12px" height="12px">
+							<line stroke="#FFFFFF" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+							<line stroke="#FFFFFF" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+						</svg>
+					</span>
+				</button>
+			</div>
+			
+			@if (User.Identity!.IsAuthenticated)
+			{
+				<div class="chatbox__body" id="chatroom">
+					<div hidden>
+						<div class="chatbox__body__message chatbox__body__message--right" id="chatbox-template">
+							<div class="chatbox_timing">
+								<ul>
+									<li id="dateTemplate">24/05/2022</li>
+								</ul>
+							</div>
+							<img src="~/img/user.png" alt="Picture" id="imageTemplate" class="rounded-md border border-width-2" style="object-fit: cover">
+							<div class="clearfix"></div>
+							<div class="ul_section_full rounded-hg">
+								<ul class="ul_msg">
+									<li class="font-weight-bold" id="senderTemplate">Email</li>
+									<li id="messageTemplate">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+								</ul>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+					
+				<div class="panel-footer">
+					
+					@if (User.IsInRole("Admin"))
+					{
+						<input type="text" id="receiverInput" class="form-control rounded-hg" placeholder="Email">
+					}
+					<div class="input-group rounded-hg">
+						<textarea type="text" id="messageInput" class="form-control rounded-hg" placeholder="Сообщение"></textarea>
+						<button type="submit" id="sendButton" class="btn text-black-50">
+							<i class="fas fa-paper-plane"></i>
+						</button>
+					</div>
+				</div>
+			}
+			else
+			{
+				<div class="chatbox__body" style="border-bottom-left-radius: 0.75rem; border-bottom-right-radius: 0.75rem;">
+					<div class="text-center">
+						<h6 class="font-size-4 font-weight-medium mb-2">Чтобы написать в поддержку, вы должны авторизоваться</h6>
+						<a asp-controller="Auth" asp-action="Login" class="banner_btn btn btn-wide btn-gradient rounded-hg font-weight-bold">Войти</a>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>

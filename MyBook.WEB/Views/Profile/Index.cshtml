@@ -1,0 +1,86 @@
+﻿@using MyBook.DAL.Entities
+@using Microsoft.AspNetCore.Identity
+@model MyBook.WEB.Models.EditProfileViewModel
+
+@inject SignInManager<User> _signInManager
+@inject UserManager<User> _userManager
+
+
+@{
+    ViewData["Title"] = "Профиль пользователя";
+}
+
+<div class="container rounded-hg bg-white mt-5 mb-8">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right font-weight-bold">Фото профиля</h4>
+                </div>
+                <img src="data:image/png;base64,@Model.Image" alt="img" width="150px" height="150px" style="object-fit: cover;" class="rounded-md border border-windsor-tan border-width-2 mb-3">
+                
+                @{await Html.RenderPartialAsync("_UserProfileImage", new ChangeProfileImageViewModel());}
+            </div>
+        </div>
+        <div class="border-right">
+            <div class="p-5 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right font-weight-bold">Настройки профиля</h4>
+                </div>
+                
+                <form asp-action="EditProfile" asp-controller="Profile" method="post">
+                    <div class="alert alert-info alert-dismissible" asp-validation-summary="ModelOnly">
+                        <a class="close" data-dismiss="alert">×</a>
+                    </div>
+                    
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label>Имя</label>
+                            <input asp-for="Name" type="text" class="form-control rounded-hg" placeholder="Имя" value="@Model.Name">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Фамилия</label>
+                            <input asp-for="LastName" type="text" class="form-control rounded-hg" value="@Model.LastName" placeholder="Фамилия">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label>Email</label><input asp-for="Email" type="text" class="form-control rounded-hg" placeholder="Email" value="@Model.Email">
+                        </div>
+                    </div>
+                    <div class="my-4 d-flex justify-content-md-center">
+                        <button type="submit" class="btn rounded-hg border-width-2 font-weight-bold btn-outline-yellow-darker">Сохранить</button>
+                    </div>
+
+                </form>
+                
+                <div class="border-top">
+                    @{await Html.RenderPartialAsync("_UserProfilePassword", new ChangePasswordViewModel());}
+                </div>
+            </div>
+        </div>
+        <div class="p-5 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-right font-weight-bold">Подписка</h4>
+            </div>
+            <div class="form-group">
+                <div class="d-flex align-items-center"><p>Тип подписки:</p>
+                    <p class="font-weight-bold pl-2">@Model.Sub.Name</p></div>
+                
+                <div class="d-flex align-items-center">
+                    <p>Срок действия:</p>
+                    <p class="font-weight-bold pl-2">@(Model.Sub.Duration == -1 ? "Навсегда" : $"{Model.SubDurationLeft} дней")</p>
+                </div>
+            </div>
+            @if (User.Identity!.IsAuthenticated && 
+                 await _userManager.IsInRoleAsync(await _userManager.FindByNameAsync(User.Identity!.Name), "UserSub"))
+            {
+                <div class="mt-4 d-flex justify-content-md-center">
+                    <button type="submit" class="btn rounded-hg border-width-2 font-weight-bold btn-outline-yellow-darker"
+                    onclick='window.location = "@Url.Action("ResetSub", "Sub")";'
+                            >Отменить подписку</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

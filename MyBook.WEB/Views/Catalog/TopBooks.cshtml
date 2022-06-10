@@ -1,0 +1,41 @@
+﻿@using System.Globalization
+@model IEnumerable<MyBook.DAL.Entities.Book>
+
+@{
+    ViewData["Title"] = "Топ книг";
+    Layout = "_Layout";
+}
+
+<div class="page-header border-bottom">
+    <div class="container">
+        <div class="d-md-flex justify-content-between align-items-center py-4">
+            <nav class="font-size-2 header-text-color">
+                <a asp-controller="Home" asp-action="Index" class="header-text-color">MyBook — Электронная библиотека</a>
+                <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>
+                <span class="header-text-color">Каталог</span>
+                <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>@ViewBag.Title
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="pt-4">
+        <h1 class="font-weight-bold">Подборки самых популярных книг</h1>
+        <p class="text-gray-700 font-size-2">На этой странице представлено много подборок самых рейтинговых книг электронной библиотеки MyBook. Подборки составляются каждый месяц, что позволит каждому читателю найти книгу по своему вкусу. Читайте самые популярные книги прямо на сайте или установите наше удобное приложение, чтобы не расставаться с любимыми произведениями даже при отсутствии подключения к интернету!</p>
+    </div>
+</div>
+
+
+@for (var month = DateTime.Today.Month; month >= 1; month--)
+{
+    if (Model.Count(x => x.AddedDate.Month == month) != 0)
+    {
+        var month1 = month;
+        @await Html.PartialAsync("_BookSelectionNoDescription", Model, new ViewDataDictionary(ViewData)
+        {
+            { "SelectionTitle", $"Топ за {CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)} {DateTime.Today:yyyy}"},
+            { "SelectionCondition", Model.Where(x => x.AddedDate.Month == month1) }
+        })
+    }
+}
